@@ -1,21 +1,135 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Asadur Rahman (SUKD1702099)
+ * Dibakar Sutra Dhar ()
+ * Nandita Dhanda ()
+ * Abdourahmane Diallo ()
+ * Mohamed Abdellah Abdelhag ()
+ * Ahmed Aref Ahmed ()
  */
 package pet.hotel.system;
 
-/**
- *
- * @author Asadur Rahman
- */
+import javax.swing.*;
+import java.util.*;
+import java.io.*;
+
+
 public class AddInfoBooking extends javax.swing.JFrame {
+    
+    ArrayList<InfoOnReg> Registration;
+    ArrayList<InfoOnBooking> Booking;
 
     /**
      * Creates new form AddInfoBooking
      */
     public AddInfoBooking() {
         initComponents();
+        this.setLocationRelativeTo(null); // center the form in screen.
+        Registration = new ArrayList<InfoOnReg>(); // initializing the array list
+        Booking = new ArrayList<InfoOnBooking>(); // initializing the booking array list
+        populateArrayList();
+        
+        String [] RegistrationArray = new String[Registration.size()];
+        for (int i = 0; i < Registration.size(); i++)
+        {
+            RegistrationArray [i] = Registration.get(i).getPet_Type();
+           jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(RegistrationArray));
+        }
+        
+        for (int i = 0; i < Registration.size(); i++)
+        {
+         
+            RegistrationArray [i] = Registration.get(i).getBreed();
+            jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(RegistrationArray));
+        }
+        
+     
+       
+                
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A Class", "B Class", "C Class" }));
+    }
+    
+     public void populateArrayList() // Array method to store data
+    {
+        try
+        {
+            FileInputStream file = new FileInputStream("InfoOnRegistration.dat");
+            ObjectInputStream inputFile = new ObjectInputStream(file);
+            
+            boolean endOfFile = false;
+            
+            while (!endOfFile )
+            {
+                 try
+                 {
+                     Registration.add((InfoOnReg)inputFile.readObject());
+                 }
+                 catch (EOFException e) //end of file exception
+                 {
+                     endOfFile = true;
+                 }
+                 catch (Exception f)
+                 {
+                     JOptionPane.showMessageDialog(null, f.getMessage());
+                 }
+            }
+                inputFile.close();
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+        try
+        {
+            FileInputStream file2 = new FileInputStream("InfoOnBooking.dat");
+            ObjectInputStream inputFile2 = new ObjectInputStream(file2);
+            
+            boolean endOfFile = false;
+            
+            while (!endOfFile )
+            {
+                 try
+                 {
+                     Booking.add((InfoOnBooking)inputFile2.readObject());
+                 }
+                 catch (EOFException e) //end of file exception
+                 {
+                     endOfFile = true;
+                 }
+                 catch (Exception f)
+                 {
+                     JOptionPane.showMessageDialog(null, f.getMessage());
+                 }
+            }
+                inputFile2.close();
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    
+    
+    } 
+     public void saveBookingToFile()
+    {
+        try
+        {
+            FileOutputStream file = new FileOutputStream("InfoOnBooking.dat"); 
+            ObjectOutputStream outputFile = new ObjectOutputStream(file);
+            
+            for (int i = 0; i < Booking.size(); i++ )
+            {
+                outputFile.writeObject(Booking.get(i)); // Registration is the array list; get(i) takes the objects and saves to file called InfoOnRegistration.dat  
+                
+            }
+            outputFile.close(); // closes the file
+            
+            JOptionPane.showMessageDialog(null, "Successfully saved!"); // when the file closes shows the message "File has been successfully saved". 
+            this.dispose(); // closes the window after showing the above message.
+        }   
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 
     /**
@@ -30,22 +144,25 @@ public class AddInfoBooking extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        Cust_Name = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        Pet_Name = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        Arrival_date = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        Departure_date = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Price_Per_Week = new javax.swing.JTextField();
+        Save = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Information on Booking");
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -67,29 +184,35 @@ public class AddInfoBooking extends javax.swing.JFrame {
 
         jLabel8.setText("Departure Date:");
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        Departure_date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                Departure_dateActionPerformed(evt);
             }
         });
 
         jLabel9.setText("Price Per Week:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Price_Per_Week.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                Price_Per_WeekActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pet/hotel/system/save.png"))); // NOI18N
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
+        Save.setText("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SaveActionPerformed(evt);
             }
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel10.setText("Pet Type:");
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,36 +220,38 @@ public class AddInfoBooking extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(279, 279, 279)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(307, 307, 307)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(242, 242, 242)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel9))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField3)
-                                .addComponent(jTextField4)
-                                .addComponent(jTextField6)
-                                .addComponent(jTextField7)
-                                .addComponent(jTextField1)
-                                .addComponent(jComboBox2, 0, 226, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(379, 379, 379)
-                        .addComponent(jButton1)))
+                        .addGap(279, 279, 279)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Cust_Name)
+                            .addComponent(Pet_Name)
+                            .addComponent(Arrival_date)
+                            .addComponent(Departure_date)
+                            .addComponent(Price_Per_Week)
+                            .addComponent(jComboBox2, 0, 226, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(288, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Save)
+                .addGap(360, 360, 360))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,15 +263,19 @@ public class AddInfoBooking extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cust_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Pet_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -154,34 +283,62 @@ public class AddInfoBooking extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Arrival_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Departure_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Price_Per_Week, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addComponent(Save)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void Departure_dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Departure_dateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_Departure_dateActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void Price_Per_WeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Price_Per_WeekActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_Price_Per_WeekActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+          if ( Cust_Name.getText().isEmpty() || Pet_Name.getText().isEmpty() || Arrival_date.getText().isEmpty() || 
+                Departure_date.getText().isEmpty() || Price_Per_Week.getText().isEmpty()
+                )
+        {
+            
+            JOptionPane.showMessageDialog(null, "Please enter all fields!");
+    
+        }
+        else 
+        {
+                    String name = Cust_Name.getText().trim();
+                    String petName = Pet_Name.getText().trim();
+                    String pettype = (String) jComboBox3.getSelectedItem();
+                    String breed = (String) jComboBox1.getSelectedItem();
+                    String typeOfRoom = (String) jComboBox2.getSelectedItem();
+                    String arrival_date = Arrival_date.getText().trim();
+                    String departure_date = Departure_date.getText().trim();
+                    String price_p_week = Price_Per_Week.getText().trim();
+                    
+        
+                    InfoOnBooking infoonbooking = new  InfoOnBooking(name, petName, pettype, breed, typeOfRoom, arrival_date, departure_date, Double.parseDouble(price_p_week)); 
+                    Booking.add(infoonbooking);
+                    saveBookingToFile();
+                   
+       
+        }
+              
+    }//GEN-LAST:event_SaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,9 +376,17 @@ public class AddInfoBooking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField Arrival_date;
+    private javax.swing.JTextField Cust_Name;
+    private javax.swing.JTextField Departure_date;
+    private javax.swing.JTextField Pet_Name;
+    private javax.swing.JTextField Price_Per_Week;
+    private javax.swing.JButton Save;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -230,11 +395,5 @@ public class AddInfoBooking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

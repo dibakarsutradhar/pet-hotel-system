@@ -30,6 +30,8 @@ public class InfoOnReg implements Serializable{
         this.Arrival_date = Arrival_date;
         this.Departure_date = Departure_date;
     }
+
+  
     
     // Boolean check
     public boolean equals (InfoOnReg infoonreg) 

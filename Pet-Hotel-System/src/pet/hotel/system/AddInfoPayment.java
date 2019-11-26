@@ -16,6 +16,8 @@ public class AddInfoPayment extends javax.swing.JFrame {
      */
     public AddInfoPayment() {
         initComponents();
+        this.setLocationRelativeTo(null); // center the form in screen.
+
     }
 
     /**
@@ -39,7 +41,8 @@ public class AddInfoPayment extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Information on Payment");
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -57,7 +60,7 @@ public class AddInfoPayment extends javax.swing.JFrame {
 
         jLabel6.setText("Payment Date:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pet/hotel/system/save.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +125,7 @@ public class AddInfoPayment extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
