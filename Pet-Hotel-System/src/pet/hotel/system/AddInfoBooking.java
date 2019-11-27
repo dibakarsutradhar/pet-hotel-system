@@ -40,6 +40,18 @@ public class AddInfoBooking extends javax.swing.JFrame {
             RegistrationArray [i] = Registration.get(i).getBreed();
             jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(RegistrationArray));
         }
+        for (int i = 0; i < Registration.size(); i++)
+        {
+         
+            RegistrationArray [i] = Registration.get(i).getCust_Name();
+            jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(RegistrationArray));
+        }
+        for (int i = 0; i < Registration.size(); i++)
+        {
+         
+            RegistrationArray [i] = Registration.get(i).getPet_Name();
+            jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(RegistrationArray));
+        }
         
      
        
@@ -144,9 +156,7 @@ public class AddInfoBooking extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Cust_Name = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        Pet_Name = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -160,6 +170,8 @@ public class AddInfoBooking extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jComboBox5 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Information on Booking");
@@ -190,7 +202,7 @@ public class AddInfoBooking extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText("Price Per Week:");
+        jLabel9.setText("Price Per Week (RM):");
 
         Price_Per_Week.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,6 +225,10 @@ public class AddInfoBooking extends javax.swing.JFrame {
         jLabel10.setText("Pet Type:");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,15 +255,15 @@ public class AddInfoBooking extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Cust_Name)
-                            .addComponent(Pet_Name)
                             .addComponent(Arrival_date)
                             .addComponent(Departure_date)
                             .addComponent(Price_Per_Week)
                             .addComponent(jComboBox2, 0, 226, Short.MAX_VALUE)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(288, Short.MAX_VALUE))
+                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(265, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Save)
@@ -260,14 +276,14 @@ public class AddInfoBooking extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(Cust_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Pet_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -294,7 +310,7 @@ public class AddInfoBooking extends javax.swing.JFrame {
                     .addComponent(Price_Per_Week, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Save)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -311,7 +327,7 @@ public class AddInfoBooking extends javax.swing.JFrame {
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
         
-          if ( Cust_Name.getText().isEmpty() || Pet_Name.getText().isEmpty() || Arrival_date.getText().isEmpty() || 
+          if (   Arrival_date.getText().isEmpty() || 
                 Departure_date.getText().isEmpty() || Price_Per_Week.getText().isEmpty()
                 )
         {
@@ -321,14 +337,14 @@ public class AddInfoBooking extends javax.swing.JFrame {
         }
         else 
         {
-                    String name = Cust_Name.getText().trim();
-                    String petName = Pet_Name.getText().trim();
+                    String name = (String) jComboBox4.getSelectedItem();
+                    String petName = (String) jComboBox5.getSelectedItem();
                     String pettype = (String) jComboBox3.getSelectedItem();
                     String breed = (String) jComboBox1.getSelectedItem();
                     String typeOfRoom = (String) jComboBox2.getSelectedItem();
                     String arrival_date = Arrival_date.getText().trim();
                     String departure_date = Departure_date.getText().trim();
-                    String price_p_week = Price_Per_Week.getText().trim();
+                    String price_p_week =  Price_Per_Week.getText().trim();
                     
         
                     InfoOnBooking infoonbooking = new  InfoOnBooking(name, petName, pettype, breed, typeOfRoom, arrival_date, departure_date, Double.parseDouble(price_p_week)); 
@@ -377,14 +393,14 @@ public class AddInfoBooking extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Arrival_date;
-    private javax.swing.JTextField Cust_Name;
     private javax.swing.JTextField Departure_date;
-    private javax.swing.JTextField Pet_Name;
     private javax.swing.JTextField Price_Per_Week;
     private javax.swing.JButton Save;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

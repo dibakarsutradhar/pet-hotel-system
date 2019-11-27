@@ -5,21 +5,176 @@
  */
 package pet.hotel.system;
 
+import javax.swing.*;
+import java.util.*;
+import java.io.*;
+import java.text.*;
+
 /**
  *
  * @author Asadur Rahman
  */
 public class AddInfoPkg extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AddInfoPkg
-     */
+    ArrayList<InfoOnReg> Registration;
+    ArrayList<InfoOnBooking> Booking;
+    ArrayList<InfoOnPkg> Package;
+    
+    DecimalFormat formatter;
+    
+    
+    
     public AddInfoPkg() {
         initComponents();
         this.setLocationRelativeTo(null); // center the form in screen.
+        
+        formatter = new DecimalFormat("#,####.00");
+        
+        Registration = new ArrayList<InfoOnReg>(); // initializing the array list
+        Booking = new ArrayList<InfoOnBooking>(); // initializing the booking array list
+        Package = new ArrayList<InfoOnPkg>(); // initializing the package array list
+        populateArrayList();
+        
+        
+          String [] RegistrationArray = new String[Registration.size()];
+        for (int i = 0; i < Registration.size(); i++)
+        {
+            RegistrationArray [i] = Registration.get(i).getPet_Type();
+           jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(RegistrationArray));
+        }
+        
+        String [] BookingArray = new String[Booking.size()];
+        for (int i = 0; i < Booking.size(); i++)
+        {
+            BookingArray [i] = Booking.get(i).getType_of_room();
+            jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(BookingArray));
+        }
+        for (int i = 0; i < Booking.size(); i++)
+        {
+            BookingArray [i] =  formatter.format(Booking.get(i).getPrice_per_week());
+            jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(BookingArray));
+        }
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Not Available" }));
 
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Not Available" }));
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Not Available" }));
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Not Available" }));
+        
+        
     }
-
+    public void populateArrayList() // Array method to store data
+    {
+        try
+        {
+            FileInputStream file = new FileInputStream("InfoOnRegistration.dat");
+            ObjectInputStream inputFile = new ObjectInputStream(file);
+            
+            boolean endOfFile = false;
+            
+            while (!endOfFile )
+            {
+                 try
+                 {
+                     Registration.add((InfoOnReg)inputFile.readObject());
+                 }
+                 catch (EOFException e) //end of file exception
+                 {
+                     endOfFile = true;
+                 }
+                 catch (Exception f)
+                 {
+                     JOptionPane.showMessageDialog(null, f.getMessage());
+                 }
+            }
+                inputFile.close();
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+        try
+        {
+            FileInputStream file2 = new FileInputStream("InfoOnBooking.dat");
+            ObjectInputStream inputFile2 = new ObjectInputStream(file2);
+            
+            boolean endOfFile = false;
+            
+            while (!endOfFile )
+            {
+                 try
+                 {
+                     Booking.add((InfoOnBooking)inputFile2.readObject());
+                 }
+                 catch (EOFException e) //end of file exception
+                 {
+                     endOfFile = true;
+                 }
+                 catch (Exception f)
+                 {
+                     JOptionPane.showMessageDialog(null, f.getMessage());
+                 }
+            }
+                inputFile2.close();
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+          try
+        {
+            FileInputStream file = new FileInputStream("InfoOnPackage.dat");
+            ObjectInputStream inputFile = new ObjectInputStream(file);
+            
+            boolean endOfFile = false;
+            
+            while (!endOfFile )
+            {
+                 try
+                 {
+                     Package.add((InfoOnPkg)inputFile.readObject());
+                 }
+                 catch (EOFException e) //end of file exception
+                 {
+                     endOfFile = true;
+                 }
+                 catch (Exception f)
+                 {
+                     JOptionPane.showMessageDialog(null, f.getMessage());
+                 }
+            }
+                inputFile.close();
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    
+    } 
+     public void savePackagingToFile()
+    {
+        try
+        {
+            FileOutputStream file = new FileOutputStream("InfoOnPackage.dat"); 
+            ObjectOutputStream outputFile = new ObjectOutputStream(file);
+            
+            for (int i = 0; i < Package.size(); i++ )
+            {
+                outputFile.writeObject(Package.get(i)); // Registration is the array list; get(i) takes the objects and saves to file called InfoOnRegistration.dat  
+                
+            }
+            outputFile.close(); // closes the file
+            
+            JOptionPane.showMessageDialog(null, "Successfully saved!"); // when the file closes shows the message "File has been successfully saved". 
+            this.dispose(); // closes the window after showing the above message.
+        }   
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,7 +193,7 @@ public class AddInfoPkg extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Save = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -46,6 +201,8 @@ public class AddInfoPkg extends javax.swing.JFrame {
         jComboBox5 = new javax.swing.JComboBox<>();
         jComboBox6 = new javax.swing.JComboBox<>();
         jComboBox7 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        Cust_Name = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Information on Package");
@@ -69,13 +226,13 @@ public class AddInfoPkg extends javax.swing.JFrame {
 
         jLabel8.setText("Vaccine:");
 
-        jLabel9.setText("Price Per Week:");
+        jLabel9.setText("Price Per Week (RM):");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
+        Save.setText("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SaveActionPerformed(evt);
             }
         });
 
@@ -93,6 +250,14 @@ public class AddInfoPkg extends javax.swing.JFrame {
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel10.setText("Customer Name:");
+
+        Cust_Name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cust_NameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,14 +274,15 @@ public class AddInfoPkg extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE))
                                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Cust_Name)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -125,12 +291,13 @@ public class AddInfoPkg extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
                         .addGap(265, 265, 265)))
                 .addGap(273, 273, 273))
             .addGroup(layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(jButton1)
+                .addGap(357, 357, 357)
+                .addComponent(Save)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -168,17 +335,50 @@ public class AddInfoPkg extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(Cust_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(Save)
+                .addGap(45, 45, 45))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+         if (   Cust_Name.getText().isEmpty() )
+        {
+            
+            JOptionPane.showMessageDialog(null, "Please enter all fields!");
+    
+        }
+         else 
+         {
+        
+                    String pettype = (String) jComboBox6.getSelectedItem();
+                    String typeOfRoom = (String) jComboBox1.getSelectedItem();
+                    String grooming = (String) jComboBox2.getSelectedItem();
+                    String toys = (String) jComboBox3.getSelectedItem();
+                    String food = (String) jComboBox4.getSelectedItem();
+                    String vaccine = (String) jComboBox5.getSelectedItem();
+                    String price_p_week = (String) jComboBox7.getSelectedItem();
+                    String cust_name = Cust_Name.getText().trim();
+        
+                    InfoOnPkg infoonpackaging = new  InfoOnPkg(pettype, typeOfRoom, grooming, toys, food, vaccine,cust_name, Double.parseDouble(price_p_week)); 
+                    Package.add(infoonpackaging);
+                    savePackagingToFile();
+                   
+         }
+        
+    }//GEN-LAST:event_SaveActionPerformed
+
+    private void Cust_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cust_NameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Cust_NameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,7 +416,8 @@ public class AddInfoPkg extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField Cust_Name;
+    private javax.swing.JButton Save;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -225,6 +426,7 @@ public class AddInfoPkg extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

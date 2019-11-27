@@ -5,11 +5,23 @@
  */
 package pet.hotel.system;
 
+import javax.swing.*;
+import java.util.*;
+import java.io.*;
+import java.text.*;
+
 /**
  *
  * @author Asadur Rahman
  */
 public class AddInfoPayment extends javax.swing.JFrame {
+    
+    ArrayList<InfoOnReg> Registration;
+    ArrayList<InfoOnBooking> Booking;
+    ArrayList<InfoOnPkg> Package;
+    ArrayList<InfoOnPayment> Payment;
+    
+    DecimalFormat formatter;
 
     /**
      * Creates new form AddInfoPayment
@@ -17,9 +29,70 @@ public class AddInfoPayment extends javax.swing.JFrame {
     public AddInfoPayment() {
         initComponents();
         this.setLocationRelativeTo(null); // center the form in screen.
+        
+        formatter = new DecimalFormat("#,####.00");
+        
 
+        Payment = new ArrayList<InfoOnPayment>(); // initializing the payment list
+        populateArrayList();
+        
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Card" }));
     }
-
+     public void populateArrayList() // Array method to store data
+    {
+       
+          try
+        {
+            FileInputStream file4 = new FileInputStream("InfoOnPayment.dat");
+            ObjectInputStream inputFile4 = new ObjectInputStream(file4);
+            
+            boolean endOfFile = false;
+            
+            while (!endOfFile )
+            {
+                 try
+                 {
+                     Payment.add((InfoOnPayment)inputFile4.readObject());
+                 }
+                 catch (EOFException e) //end of file exception
+                 {
+                     endOfFile = true;
+                 }
+                 catch (Exception f)
+                 {
+                     JOptionPane.showMessageDialog(null, f.getMessage());
+                 }
+            }
+                inputFile4.close();
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    
+    }
+     public void savePaymentToFile()
+    {
+        try
+        {
+            FileOutputStream file = new FileOutputStream("InfoOnPayment.dat"); 
+            ObjectOutputStream outputFile = new ObjectOutputStream(file);
+            
+            for (int i = 0; i < Payment.size(); i++ )
+            {
+                outputFile.writeObject(Payment.get(i)); // Registration is the array list; get(i) takes the objects and saves to file called InfoOnRegistration.dat  
+                
+            }
+            outputFile.close(); // closes the file
+            
+            JOptionPane.showMessageDialog(null, "Successfully saved!"); // when the file closes shows the message "File has been successfully saved". 
+            this.dispose(); // closes the window after showing the above message.
+        }   
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,13 +105,13 @@ public class AddInfoPayment extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Cust_Name = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        Cust_Address = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        pay_date = new javax.swing.JTextField();
+        Save = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -60,11 +133,11 @@ public class AddInfoPayment extends javax.swing.JFrame {
 
         jLabel6.setText("Payment Date:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
+        Save.setText("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SaveActionPerformed(evt);
             }
         });
 
@@ -91,13 +164,13 @@ public class AddInfoPayment extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField4)
+                                    .addComponent(Cust_Name)
+                                    .addComponent(Cust_Address)
+                                    .addComponent(pay_date)
                                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(363, 363, 363)
-                        .addComponent(jButton1)))
+                        .addComponent(Save)))
                 .addContainerGap(281, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -110,11 +183,11 @@ public class AddInfoPayment extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cust_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cust_Address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -122,18 +195,39 @@ public class AddInfoPayment extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pay_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(Save)
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if ( Cust_Name.getText().isEmpty() || Cust_Address.getText().isEmpty() ||
+               pay_date.getText().isEmpty()
+                )
+        {
+            
+            JOptionPane.showMessageDialog(null, "Please enter all fields!");
+    
+        }
+        else 
+        {
+                    String name = Cust_Name.getText().trim();
+                    String custAddress = Cust_Address.getText().trim();
+                    String paytype = (String) jComboBox1.getSelectedItem();
+                    String payDate = pay_date.getText().trim();
+        
+                    InfoOnPayment infoonpayment = new InfoOnPayment(name, custAddress, paytype, payDate); 
+                    Payment.add(infoonpayment);
+                    savePaymentToFile();
+                   
+       
+        }
+    }//GEN-LAST:event_SaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,7 +265,9 @@ public class AddInfoPayment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField Cust_Address;
+    private javax.swing.JTextField Cust_Name;
+    private javax.swing.JButton Save;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -179,8 +275,6 @@ public class AddInfoPayment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField pay_date;
     // End of variables declaration//GEN-END:variables
 }
