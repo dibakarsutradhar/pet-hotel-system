@@ -6,7 +6,7 @@
  * Ahmed Aref Ahmed ()
  */
 package pet.hotel.system;
-import Login.LoginForm;
+import Login.Welcome;
 /**
  *
  * @author Asadur Rahman
@@ -18,7 +18,7 @@ public class GUI {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new LoginForm().setVisible(true);
+        new Welcome().setVisible(true);
         
     }
     
