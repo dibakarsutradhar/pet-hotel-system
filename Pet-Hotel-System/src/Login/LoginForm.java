@@ -46,12 +46,12 @@ public class LoginForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Page");
 
-        jPanel1.setBackground(new java.awt.Color(35, 203, 167));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Login Form");
+        jLabel1.setText("LOGIN FORM");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,7 +70,7 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(149, 165, 166));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 153));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -83,7 +83,7 @@ public class LoginForm extends javax.swing.JFrame {
             .addGap(0, 340, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(44, 62, 80));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 153));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -96,7 +96,7 @@ public class LoginForm extends javax.swing.JFrame {
             .addGap(0, 110, Short.MAX_VALUE)
         );
 
-        jPanel4.setBackground(new java.awt.Color(171, 183, 183));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 153));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
