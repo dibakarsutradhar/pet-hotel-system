@@ -11,7 +11,7 @@ package Login;
  */
 
 import javax.swing.*;
-import Menu.Menu;
+import Menu.AdminMenu;
 public class LoginForm extends javax.swing.JFrame {
 
     /**
@@ -215,7 +215,7 @@ public class LoginForm extends javax.swing.JFrame {
         if(jTextField1.getText().equals("Admin") && ext.equals("admin")) // if statement to compare Username and Password.
         {
             JOptionPane.showMessageDialog(null, "Login Successful"); // If the statement is right, this message will be shown.
-            Menu obj = new Menu();
+            AdminMenu obj = new AdminMenu();
             obj.setVisible(true);
             setVisible(false); //hiding current login form
         }
