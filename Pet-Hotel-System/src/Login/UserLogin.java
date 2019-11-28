@@ -112,7 +112,7 @@ public class UserLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String ext = new String(jPasswordField1.getPassword()); // declaration of string to accept the password.
-        if(jTextField1.getText().equals("User") && ext.equals("user")) // if statement to compare Username and Password.
+        if(!jTextField1.getText().isEmpty() && !ext.isEmpty()) // if statement to compare Username and Password.
         {
             JOptionPane.showMessageDialog(null, "Login Successful"); // If the statement is right, this message will be shown.
             Menu obj = new Menu();
