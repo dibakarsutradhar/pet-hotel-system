@@ -40,7 +40,7 @@ public class AddNewCust extends javax.swing.JFrame {
     {
         try
         {
-            FileInputStream file = new FileInputStream("InfoOnRegistration.dat");
+            FileInputStream file = new FileInputStream("InfoOnRegistration.txt");
             ObjectInputStream inputFile = new ObjectInputStream(file);
             
             boolean endOfFile = false;
@@ -74,7 +74,7 @@ public class AddNewCust extends javax.swing.JFrame {
     {
         try
         {
-            FileOutputStream file = new FileOutputStream("InfoOnRegistration.dat"); 
+            FileOutputStream file = new FileOutputStream("InfoOnRegistration.txt"); 
             ObjectOutputStream outputFile = new ObjectOutputStream(file);
             
             for (int i = 0; i < Registration.size(); i++ )
@@ -167,7 +167,7 @@ public class AddNewCust extends javax.swing.JFrame {
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Customer Phone Number:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 197, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         Cust_Ph_No.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,7 +200,7 @@ public class AddNewCust extends javax.swing.JFrame {
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Departure Date:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 395, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
 
         Departure_date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -43,7 +43,7 @@ public class AddInfoPayment extends javax.swing.JFrame {
        
           try
         {
-            FileInputStream file4 = new FileInputStream("InfoOnPayment.dat");
+            FileInputStream file4 = new FileInputStream("InfoOnPayment.txt");
             ObjectInputStream inputFile4 = new ObjectInputStream(file4);
             
             boolean endOfFile = false;
@@ -75,7 +75,7 @@ public class AddInfoPayment extends javax.swing.JFrame {
     {
         try
         {
-            FileOutputStream file = new FileOutputStream("InfoOnPayment.dat"); 
+            FileOutputStream file = new FileOutputStream("InfoOnPayment.txt"); 
             ObjectOutputStream outputFile = new ObjectOutputStream(file);
             
             for (int i = 0; i < Payment.size(); i++ )

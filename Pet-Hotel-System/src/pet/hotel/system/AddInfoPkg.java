@@ -65,7 +65,7 @@ public class AddInfoPkg extends javax.swing.JFrame {
     {
         try
         {
-            FileInputStream file = new FileInputStream("InfoOnRegistration.dat");
+            FileInputStream file = new FileInputStream("InfoOnRegistration.txt");
             ObjectInputStream inputFile = new ObjectInputStream(file);
             
             boolean endOfFile = false;
@@ -94,7 +94,7 @@ public class AddInfoPkg extends javax.swing.JFrame {
         
         try
         {
-            FileInputStream file2 = new FileInputStream("InfoOnBooking.dat");
+            FileInputStream file2 = new FileInputStream("InfoOnBooking.txt");
             ObjectInputStream inputFile2 = new ObjectInputStream(file2);
             
             boolean endOfFile = false;
@@ -122,7 +122,7 @@ public class AddInfoPkg extends javax.swing.JFrame {
         }
           try
         {
-            FileInputStream file = new FileInputStream("InfoOnPackage.dat");
+            FileInputStream file = new FileInputStream("InfoOnPackage.txt");
             ObjectInputStream inputFile = new ObjectInputStream(file);
             
             boolean endOfFile = false;
@@ -154,7 +154,7 @@ public class AddInfoPkg extends javax.swing.JFrame {
     {
         try
         {
-            FileOutputStream file = new FileOutputStream("InfoOnPackage.dat"); 
+            FileOutputStream file = new FileOutputStream("InfoOnPackage.txt"); 
             ObjectOutputStream outputFile = new ObjectOutputStream(file);
             
             for (int i = 0; i < Package.size(); i++ )
