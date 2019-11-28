@@ -16,12 +16,14 @@ import java.io.*;
 public class InfoOnBooking implements Serializable
 {
     
+    private static final long serialVersionUID = 4632376938861345322L;
     private String Cust_Name, Pet_Name, Pet_Type, Breed;
     private String type_of_room, Arrival_date, Departure_date;
-    private double price_per_week;
+    private double price_per_week,day, price_per_day;
 
     // Constructor
-    public InfoOnBooking(String Cust_Name, String Pet_Name, String Pet_Type, String Breed, String type_of_room, String Arrival_date, String Departure_date, double price_per_week) {
+
+    public InfoOnBooking(String Cust_Name, String Pet_Name, String Pet_Type, String Breed, String type_of_room, String Arrival_date, String Departure_date, double price_per_week, double day, double price_per_day) {
         this.Cust_Name = Cust_Name;
         this.Pet_Name = Pet_Name;
         this.Pet_Type = Pet_Type;
@@ -30,9 +32,10 @@ public class InfoOnBooking implements Serializable
         this.Arrival_date = Arrival_date;
         this.Departure_date = Departure_date;
         this.price_per_week = price_per_week;
+        this.day = day;
+        this.price_per_day = price_per_day;
     }
-    
-    // getter and setter
+      // getter and setter
     public String getCust_Name() {
         return Cust_Name;
     }
@@ -96,6 +99,23 @@ public class InfoOnBooking implements Serializable
     public void setPrice_per_week(double price_per_week) {
         this.price_per_week = price_per_week;
     }
+
+    public double getDay() {
+        return day;
+    }
+
+    public void setDay(double day) {
+        this.day = day;
+    }
+
+    public double getPrice_per_day() {
+        return price_per_day;
+    }
+
+    public void setPrice_per_day(double price_per_day) {
+        this.price_per_day = price_per_day;
+    }
+    
     
     
 }

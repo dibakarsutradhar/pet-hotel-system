@@ -14,6 +14,8 @@ import java.io.*;
 
 public class AddInfoBooking extends javax.swing.JFrame {
     
+    private static final long serialVersionUID = 4437726843389309119L;
+    
     ArrayList<InfoOnReg> Registration;
     ArrayList<InfoOnBooking> Booking;
 
@@ -57,6 +59,8 @@ public class AddInfoBooking extends javax.swing.JFrame {
        
                 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A Class", "B Class", "C Class" }));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "200", "300", "400", "500", "600" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1","2","3", "4", "5" }));
     }
     
      public void populateArrayList() // Array method to store data
@@ -165,7 +169,6 @@ public class AddInfoBooking extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         Departure_date = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        Price_Per_Week = new javax.swing.JTextField();
         Save = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -173,7 +176,12 @@ public class AddInfoBooking extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
+        jComboBox6 = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jComboBox7 = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        p_p_day = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bg5.jpg"))); // NOI18N
@@ -186,13 +194,13 @@ public class AddInfoBooking extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Information on Booking");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 280, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 280, -1));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Fill up the following details: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 220, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 220, -1));
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Customer Name:");
@@ -212,8 +220,14 @@ public class AddInfoBooking extends javax.swing.JFrame {
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Arrival Date:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, -1));
-        getContentPane().add(Arrival_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 226, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
+
+        Arrival_date.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Arrival_dateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Arrival_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 226, -1));
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Departure Date:");
@@ -229,13 +243,6 @@ public class AddInfoBooking extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Price Per Week (RM):");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
-
-        Price_Per_Week.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Price_Per_WeekActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Price_Per_Week, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 226, -1));
 
         Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/save.png"))); // NOI18N
         Save.setText("Save");
@@ -265,10 +272,33 @@ public class AddInfoBooking extends javax.swing.JFrame {
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 226, -1));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bg1.jpg"))); // NOI18N
-        jPanel1.add(jLabel15);
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 315, 226, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 470));
+        jLabel11.setText("Days:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 349, -1, -1));
+
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 344, 66, -1));
+
+        jLabel13.setText("Price Per Day:");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(338, 344, -1, 24));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 344, 74, -1));
+        getContentPane().add(p_p_day, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 347, 68, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bg1.jpg"))); // NOI18N
+        jLabel15.setText("jLabel15");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,15 +307,11 @@ public class AddInfoBooking extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Departure_dateActionPerformed
 
-    private void Price_Per_WeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Price_Per_WeekActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Price_Per_WeekActionPerformed
-
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
         
           if (   Arrival_date.getText().isEmpty() || 
-                Departure_date.getText().isEmpty() || Price_Per_Week.getText().isEmpty()
+                Departure_date.getText().isEmpty() 
                 )
         {
             
@@ -301,10 +327,11 @@ public class AddInfoBooking extends javax.swing.JFrame {
                     String typeOfRoom = (String) jComboBox2.getSelectedItem();
                     String arrival_date = Arrival_date.getText().trim();
                     String departure_date = Departure_date.getText().trim();
-                    String price_p_week =  Price_Per_Week.getText().trim();
-                    
+                    String price_p_week = (String) jComboBox6.getSelectedItem();
+                    String day = (String) jComboBox7.getSelectedItem();
+                    String price_p_day = p_p_day.getText().trim();
         
-                    InfoOnBooking infoonbooking = new  InfoOnBooking(name, petName, pettype, breed, typeOfRoom, arrival_date, departure_date, Double.parseDouble(price_p_week)); 
+                    InfoOnBooking infoonbooking = new  InfoOnBooking(name, petName, pettype, breed, typeOfRoom, arrival_date, departure_date, Double.parseDouble(price_p_week), Double.parseDouble(day), Double.parseDouble(price_p_day)); 
                     Booking.add(infoonbooking);
                     saveBookingToFile();
                    
@@ -312,6 +339,30 @@ public class AddInfoBooking extends javax.swing.JFrame {
         }
               
     }//GEN-LAST:event_SaveActionPerformed
+
+    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+        // TODO add your handling code here:
+        Object obj=evt.getSource();
+        if (obj==jComboBox7){
+            String x = (String) jComboBox6.getSelectedItem();
+            int a = Integer.parseInt(x);
+            String y = (String) jComboBox7.getSelectedItem();
+            int b = Integer.parseInt(y);
+            int r = a/b;
+            String z = Integer.toString(r);
+            p_p_day.setText(z);
+            
+        
+        }
+    }//GEN-LAST:event_jComboBox7ActionPerformed
+
+    private void Arrival_dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Arrival_dateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Arrival_dateActionPerformed
+
+    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,16 +402,20 @@ public class AddInfoBooking extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Arrival_date;
     private javax.swing.JTextField Departure_date;
-    private javax.swing.JTextField Price_Per_Week;
     private javax.swing.JButton Save;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
+    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -370,6 +425,6 @@ public class AddInfoBooking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField p_p_day;
     // End of variables declaration//GEN-END:variables
 }
