@@ -97,6 +97,11 @@ public class UserLogin extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("SIGN UP");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 420));
@@ -107,7 +112,7 @@ public class UserLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String ext = new String(jPasswordField1.getPassword()); // declaration of string to accept the password.
-        if(jTextField1.getText().equals("User") && ext.equals("user")) // if statement to compare Username and Password.
+        if(!jTextField1.getText().isEmpty() && !ext.isEmpty()) // if statement to compare Username and Password.
         {
             JOptionPane.showMessageDialog(null, "Login Successful"); // If the statement is right, this message will be shown.
             Menu obj = new Menu();
@@ -119,6 +124,12 @@ public class UserLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Login Failed"); // else, this message will be shown.
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new UserReg().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
