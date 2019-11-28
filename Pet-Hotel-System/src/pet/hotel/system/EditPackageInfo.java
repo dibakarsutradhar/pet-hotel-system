@@ -33,7 +33,7 @@ public class EditPackageInfo extends javax.swing.JFrame {
         
         populateArrayList();
         
-        String [] PaymentArray = new String[Package.size()];
+        String [] PackageArray = new String[Package.size()];
         for (int i = 0; i < Package.size(); i++)
         {
             PackageArray [i] = Package.get(i).getCust_Name();
@@ -65,6 +65,38 @@ public class EditPackageInfo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+     public void  populateArrayList (){
+         try
+        {
+            FileInputStream file = new FileInputStream("InfoOnPackage.txt");
+            ObjectInputStream inputFile = new ObjectInputStream(file);
+            
+            boolean endOfFile = false;
+            
+            while (!endOfFile )
+            {
+                 try
+                 {
+                     Package.add((InfoOnPkg)inputFile.readObject());
+                 }
+                 catch (EOFException e) //end of file exception
+                 {
+                     endOfFile = true;
+                 }
+                 catch (Exception f)
+                 {
+                     JOptionPane.showMessageDialog(null, f.getMessage());
+                 }
+            }
+                inputFile.close();
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+     
+     
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,6 +137,11 @@ public class EditPackageInfo extends javax.swing.JFrame {
         jLabel2.setText("Choose Customer Name:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Pet Type:");
 
@@ -122,9 +159,19 @@ public class EditPackageInfo extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pet/hotel/system/save.png"))); // NOI18N
         jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-delete-bin-48.png"))); // NOI18N
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,6 +256,55 @@ public class EditPackageInfo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         if ( jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() 
+                || jTextField3.getText().isEmpty() 
+                )
+        {
+            
+            JOptionPane.showMessageDialog(null, "Please enter all fields!");
+    
+        }
+        else 
+        {
+               int selectedIndex = jComboBox1.getSelectedIndex();
+               Package.get(selectedIndex).setPet_Type(jTextField1.getText().trim());
+               Package.get(selectedIndex).setType_of_room(jTextField2.getText().trim());
+               Package.get(selectedIndex).setGrooming(jTextField3.getText().trim());
+               Package.get(selectedIndex).setToys(jTextField4.getText().trim());
+               Package.get(selectedIndex).setFood(jTextField5.getText().trim());
+               Package.get(selectedIndex).setVaccine(jTextField6.getText().trim());
+               Package.get(selectedIndex).setPrice_per_week(Double.parseDouble(jTextField7.getText()));
+               
+              
+               
+               
+               savePackagingToFile();
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = jComboBox1.getSelectedIndex(); 
+       jTextField1.setText(Package.get(selectedIndex).getPet_Type());
+       jTextField2.setText(Package.get(selectedIndex).getType_of_room());
+       jTextField3.setText(Package.get(selectedIndex).getGrooming());
+       jTextField4.setText(Package.get(selectedIndex).getToys());
+       jTextField5.setText(Package.get(selectedIndex).getFood());
+       jTextField6.setText(Package.get(selectedIndex).getVaccine());
+       jTextField7.setText(Package.get(selectedIndex).getPrice_per_week()+"");
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = jComboBox1.getSelectedIndex(); 
+        Package.remove(selectedIndex);
+        
+        savePackagingToFile();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

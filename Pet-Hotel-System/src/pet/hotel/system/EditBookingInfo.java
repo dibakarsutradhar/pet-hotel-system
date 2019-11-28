@@ -28,7 +28,7 @@ public class EditBookingInfo extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null); // center the form in screen.
         
-        formatter = new DecimalFormat("#,####");
+        formatter = new DecimalFormat("#,####.00");
         
         
         Booking = new ArrayList<InfoOnBooking>(); // initializing the array list
@@ -300,6 +300,7 @@ public class EditBookingInfo extends javax.swing.JFrame {
         }
         else 
         {
+                formatter = new DecimalFormat("#,####.00");
                int selectedIndex = jComboBox1.getSelectedIndex();
                Booking.get(selectedIndex).setCust_Name(jTextField1.getSelectedText());
                Booking.get(selectedIndex).setPet_Name(jTextField2.getSelectedText());
@@ -308,9 +309,9 @@ public class EditBookingInfo extends javax.swing.JFrame {
                Booking.get(selectedIndex).setType_of_room(jTextField5.getSelectedText());
                Booking.get(selectedIndex).setArrival_date(jTextField6.getText().trim());
                Booking.get(selectedIndex).setDeparture_date(jTextField7.getText().trim());
-               Booking.get(selectedIndex).setPrice_per_week(Double.parseDouble(jTextField8.getSelectedText()));
-               Booking.get(selectedIndex).setDay(Double.parseDouble(jTextField9.getSelectedText()));
-               Booking.get(selectedIndex).setPrice_per_day(Double.parseDouble(jTextField10.getSelectedText()));
+               Booking.get(selectedIndex).setPrice_per_week(Double.parseDouble(jTextField8.getText()));
+               Booking.get(selectedIndex).setDay(Double.parseDouble(jTextField9.getText()));
+               Booking.get(selectedIndex).setPrice_per_day(Double.parseDouble(jTextField10.getText()));
                
                saveBookingToFile();
                
@@ -324,6 +325,7 @@ public class EditBookingInfo extends javax.swing.JFrame {
         // TODO add your handling code here                                        
         
        int selectedIndex = jComboBox1.getSelectedIndex(); 
+       formatter = new DecimalFormat("#,####.00");
        
        jTextField1.setText(Booking.get(selectedIndex).getCust_Name());
        jTextField2.setText(Booking.get(selectedIndex).getPet_Name());

@@ -339,13 +339,13 @@ public class EditData extends javax.swing.JFrame {
                Registration.get(selectedIndex).setCust_Name(jTextField1.getText().trim());
                Registration.get(selectedIndex).setCust_Address(jTextField2.getText().trim());
                Registration.get(selectedIndex).setCust_Email(jTextField3.getText().trim());
-               Registration.get(selectedIndex).setCust_Ph_No(Integer.parseInt(jTextField4.getText().trim()));
+               Registration.get(selectedIndex).setCust_Ph_No(Double.parseDouble(jTextField4.getText().trim()));
                Registration.get(selectedIndex).setPet_Name(jTextField5.getText().trim());
                Registration.get(selectedIndex).setArrival_date(jTextField6.getText().trim());
                Registration.get(selectedIndex).setDeparture_date(jTextField7.getText().trim());
-               Registration.get(selectedIndex).setPet_Sex(jTextField10.getSelectedText());
-               Registration.get(selectedIndex).setBreed(jTextField9.getSelectedText());
-               Registration.get(selectedIndex).setPet_Type(jTextField8.getSelectedText());
+               Registration.get(selectedIndex).setPet_Sex(jTextField10.getText());
+               Registration.get(selectedIndex).setBreed(jTextField9.getText());
+               Registration.get(selectedIndex).setPet_Type(jTextField8.getText());
                
                
                saveRegistrationToFile();
