@@ -137,7 +137,7 @@ public class EditData extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Edit / Update / Delete - Customer Data");
+        setTitle("Edit / Update / Delete - Customer Data Panel");
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
