@@ -42,7 +42,7 @@ Screenshots of the System -
 * **Mohamed Abdallah Abdelhag** - *UML Diagram*
 * **Abdourahmane Diallo** - *UML Case Digram*
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/dibakarsutradhar/pet-hotel-system/graphs/contributors) who participated in this project.
 
 ## License
 
