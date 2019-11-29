@@ -1,10 +1,10 @@
-/* Asadur Rahman (SUKD1702099)
- * Dibakar Sutra Dhar ()
- * Nandita Dhanda ()
- * Abdourahmane Diallo ()
- * Mohamed Abdellah Abdelhag ()
- * Ahmed Aref Ahmed ()
- */
+/* Asadur Rahman, SUKD1702099
+   Deebakar Sutra Dhar, SUKD1802273,
+   Mohamed Abdallah Abdelhag, SUKD1802062
+   Abdourahmane Diallo, SUKD1801767
+   Nandita Dhanda, SUKD1702275
+   Ahmed Aref Ahmed, SUKD1801597
+*/
 
 package pet.hotel.system;
 
