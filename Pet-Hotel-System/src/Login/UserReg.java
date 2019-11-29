@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Login;
+import javax.swing.*;
 
 /**
  *
@@ -174,6 +175,7 @@ public class UserReg extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         new UserLogin().setVisible(true);
+        JOptionPane.showMessageDialog(null, "Account Created");
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

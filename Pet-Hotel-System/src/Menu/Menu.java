@@ -6,6 +6,7 @@
 package Menu;
 import pet.hotel.system.*;
 import Login.Welcome;
+import javax.swing.*;
 
 /**
  *
@@ -169,6 +170,7 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
         new Welcome().setVisible(true);
+        JOptionPane.showMessageDialog(null, "Logout Successfully!");
         setVisible(false);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
