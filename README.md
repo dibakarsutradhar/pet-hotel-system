@@ -28,7 +28,7 @@ Clean build and run
 ## Deployment
 
 Screenshots of the System - 
-![Alt text](https://raw.githubusercontent.com/dibakarsutradhar/pet-hotel-system/develop/Pictures/WelcomePage.png "Welcome")
+![Alt text](https://github.com/dibakarsutradhar/pet-hotel-system/blob/develop/Pictures/WelcomePage.PNG "Welcome")
 
 ## Built With
 
