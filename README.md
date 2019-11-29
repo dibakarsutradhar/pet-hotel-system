@@ -1,33 +1,55 @@
-# pet-hotel-system
+# PET HOTEL SYSTEM
 
-Java OOP Assignment
+Pet Hotel System using Java in order to provide efficient management of the overall Petlover Pet Hotel. The system is designed to manage and
+control: customer registration, packages, bookings and payments. 
 
-Group Mates
+## Getting Started
 
-1. Asadur Rahman
-2. Dibakar Sutra Dhar
-3. Nandita Dhanda
-4. Abdourahmane Diallo
-5. Mohamed Abdellah Abdelhag
-6. Ahmed Aref Ahmed
+Start with forking the project into your own repository.
 
-Task to do:-
+### Prerequisites
 
-1. Main Menu GUI
-2. Main Class
-3. Designing the GUI
-4. Functions Test Class
-5. Functions Test Class
-6. Class - Information on Registration
-7. Class - Information on Package
-8. Class - Information on Booking
-9. Class - Information on Payment
-10. Class - Report on Payment
-11. Class - Report on Booking
-12. Class - Report on Package
-13. Class - Report on Registration
-14. Data Tracing without Database 
-15. Adminstration CLass
-16. Log Report
-17. Documentaion
-18. UML Diagram
+What things you need to install the software and how to install them
+
+```
+1. Netbeans IDE 8.2
+2. JAVA SE 8.2
+```
+
+### Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+Fork & Download the Project
+Open it on Netbeans IDE 8.2 or Above
+Clean build and run
+
+
+## Deployment
+
+Screenshots of the System - 
+![Alt text](https://raw.githubusercontent.com/dibakarsutradhar/pet-hotel-system/develop/Pictures/WelcomePage.png "Welcome")
+
+## Built With
+
+* [Netbeans IDE 8.2](https://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-3413139-esa.html) - The IDE used
+
+## Authors
+
+* **Asadur Rahman** - *Initial work* - [ViX3L](https://github.com/ViX3L)
+* **Dibakar Sutra Dhar** - *Initial work* - [dibakarsutradhar]https://github.com/dibakarsutradhar)
+* **Nandita Dhanda** - *Documentation* - [espeondesign](https://github.com/espeondesign)
+* **Mohamed Abdallah Abdelhag** - *UML Diagram*
+* **Abdourahmane Diallo** - *UML Case Digram*
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
